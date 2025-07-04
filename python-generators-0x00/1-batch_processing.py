@@ -21,7 +21,10 @@ def stream_users_in_batches(batch_size):
         cursor.close()
         connection.close()
 
-gen = stream_users_in_batches(2)
-nex = next(gen)
-for a in nex:
-    print(a)
+
+def batch_processing(batch_size):
+    for batch in stream_users_in_batches(batch_size):
+        for user in batch:
+            if user['age']> 25:
+                print(user)
+batch_processing(2)
