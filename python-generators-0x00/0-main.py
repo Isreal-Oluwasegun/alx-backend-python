@@ -10,7 +10,7 @@ if connection:
 
     if connection:
         seed.create_table(connection)
-        seed.insert_data(connection, 'user_data.csv')
+        seed.insert_data(connection, 'C:/Users/ISRAEL/alx-backend-python/python-generators-0x00/user_data.csv')
         cursor = connection.cursor()
         cursor.execute(f"SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'ALX_prodev';")
         result = cursor.fetchone()

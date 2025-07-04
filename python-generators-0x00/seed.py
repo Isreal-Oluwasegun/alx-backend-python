@@ -60,7 +60,7 @@ def create_table(connection):
         try:
             cursor = connection.cursor()
             cursor.execute("""
-                            CREATE TABLE IF NOT EXISTS users (
+                            CREATE TABLE IF NOT EXISTS user_data (
                             user_id CHAR(36) PRIMARY KEY,
                                 name VARCHAR(255) NOT NULL,
                                 email VARCHAR(255) NOT NULL,
@@ -82,7 +82,7 @@ def insert_data(connection, filename):
         reader = csv.DictReader(csvfile)
         for row in reader:
             cursor.execute("""
-                INSERT IGNORE INTO users (user_id, name, email, age)
+                INSERT IGNORE INTO user_data (user_id, name, email, age)
                 VALUES (%s, %s, %s, %s)
             """, (
                 row.get('user_id') or str(uuid.uuid4()),
