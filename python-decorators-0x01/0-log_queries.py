@@ -1,24 +1,19 @@
 import sqlite3
 import functools
-import logging
+from datetime import datetime
 
 
 def log_queries(func):
-    format = '%(levelname)s - %(asctime)s - %(message)s'
-    logging.basicConfig(filename="query.log", filemode="a", format=format)
-    logger = logging.getLogger()
-    logger.setLevel(logging.ERROR)
-
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
+        date =datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         query = kwargs.get('query') if 'query' else (args[0] if args else '')
         try:
-            func(*args, **kwargs)
+            return func(*args, **kwargs)
         except sqlite3.Error as err:
-            logger.error(f'{err} : {query}')
-        except Exception as exp:
-            logger.critical(f'{err} : {query}')
-
+            print(f'{date} - {err} - {query}')
+        except Exception as exc:
+            print(f'{date} - {exc} - {query}')
         return func
     return wrapper
 
