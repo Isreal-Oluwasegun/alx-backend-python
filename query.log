@@ -1,0 +1,2 @@
+ERROR - 2025-07-12 10:51:10,607 - no such table: uses : SELECT * FROM uses
+ERROR - 2025-07-12 10:51:24,599 - no such table: users : SELECT * FROM users
